@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title data-i18n="home.metaTitle">DevJobs | IT jobs at startups</title>
-  <meta name="description" content="Search IT jobs at startups: remote, hybrid and onsite roles for junior, middle and senior developers.">
-  <script type="module" src="./js/main.js"></script>
+  <%- include('partials/head', {
+    title: 'DevJobs | IT jobs at startups',
+    titleKey: 'home.metaTitle',
+    description: 'Search IT jobs at startups: remote, hybrid and onsite roles for junior, middle and senior developers.'
+  }) %>
 </head>
 <body>
   <a class="skip-link" href="#main" data-i18n="common.skipLink">Skip to content</a>
@@ -63,82 +63,9 @@
       </div>
 
       <ul class="job-list">
-        <li class="job-list__item">
-          <article class="job-card">
-            <span class="avatar avatar--dark job-card__avatar" aria-hidden="true">N</span>
-            <div class="job-card__body">
-              <h3 class="job-card__title"><a class="job-card__link" href="job.html">Frontend Developer (React)</a></h3>
-              <p class="job-card__meta">Nova Labs · 30–40 <span data-i18n="common.hoursPerWeek">h/week</span></p>
-              <ul class="job-card__tags" aria-label="Tags" data-i18n-aria-label="common.tags">
-                <li class="tag tag--remote">Remote</li>
-                <li class="tag tag--level">Middle</li>
-                <li class="tag">React</li>
-                <li class="tag">TypeScript</li>
-              </ul>
-            </div>
-            <div class="job-card__footer">
-              <p class="job-card__salary">$3,000–4,500</p>
-              <p class="job-card__posted"><time datetime="2026-11-18">2 days ago</time></p>
-            </div>
-          </article>
-        </li>
-        <li class="job-list__item">
-          <article class="job-card">
-            <span class="avatar avatar--light job-card__avatar" aria-hidden="true">K</span>
-            <div class="job-card__body">
-              <h3 class="job-card__title"><a class="job-card__link" href="job.html">Go Backend Engineer</a></h3>
-              <p class="job-card__meta">Kyiv Cloud · 40 <span data-i18n="common.hoursPerWeek">h/week</span></p>
-              <ul class="job-card__tags" aria-label="Tags" data-i18n-aria-label="common.tags">
-                <li class="tag">Hybrid</li>
-                <li class="tag tag--level">Senior</li>
-                <li class="tag">Go</li>
-                <li class="tag">PostgreSQL</li>
-              </ul>
-            </div>
-            <div class="job-card__footer">
-              <p class="job-card__salary">$4,000–6,000</p>
-              <p class="job-card__posted"><time datetime="2026-11-20">Today</time></p>
-            </div>
-          </article>
-        </li>
-        <li class="job-list__item">
-          <article class="job-card">
-            <span class="avatar avatar--gray job-card__avatar" aria-hidden="true">P</span>
-            <div class="job-card__body">
-              <h3 class="job-card__title"><a class="job-card__link" href="job.html">UI/UX Designer</a></h3>
-              <p class="job-card__meta">Pixelforge · 20–30 <span data-i18n="common.hoursPerWeek">h/week</span></p>
-              <ul class="job-card__tags" aria-label="Tags" data-i18n-aria-label="common.tags">
-                <li class="tag tag--remote">Remote</li>
-                <li class="tag tag--level">Middle</li>
-                <li class="tag">Figma</li>
-                <li class="tag">Research</li>
-              </ul>
-            </div>
-            <div class="job-card__footer">
-              <p class="job-card__salary">$2,500–3,500</p>
-              <p class="job-card__posted"><time datetime="2026-11-17">3 days ago</time></p>
-            </div>
-          </article>
-        </li>
-        <li class="job-list__item">
-          <article class="job-card">
-            <span class="avatar avatar--dark job-card__avatar" aria-hidden="true">T</span>
-            <div class="job-card__body">
-              <h3 class="job-card__title"><a class="job-card__link" href="job.html">QA Automation Engineer</a></h3>
-              <p class="job-card__meta">TestHive · 10–15 <span data-i18n="common.hoursPerWeek">h/week</span></p>
-              <ul class="job-card__tags" aria-label="Tags" data-i18n-aria-label="common.tags">
-                <li class="tag">Onsite</li>
-                <li class="tag tag--level">Junior</li>
-                <li class="tag">Python</li>
-                <li class="tag">Selenium</li>
-              </ul>
-            </div>
-            <div class="job-card__footer">
-              <p class="job-card__salary">$1,500–2,200</p>
-              <p class="job-card__posted"><time datetime="2026-11-15">5 days ago</time></p>
-            </div>
-          </article>
-        </li>
+        <% jobs.forEach((job) => { %>
+        <li class="job-list__item"><%- include("partials/job-card", { job, company: companyByName[job.company] }) %></li>
+        <% }); %>
       </ul>
 
       <a class="button button--outline latest-jobs__more" href="jobs.html" data-i18n="home.latest.showMore">Show more jobs</a>
@@ -147,48 +74,9 @@
     <section class="companies" aria-labelledby="companies-title">
       <h2 class="companies__title" id="companies-title" data-i18n="home.companies.title">Top companies</h2>
       <ul class="companies__list">
-        <li class="companies__item">
-          <article class="company-tile">
-            <span class="avatar avatar--dark company-tile__avatar" aria-hidden="true">N</span>
-            <h3 class="company-tile__name">Nova Labs</h3>
-            <p class="company-tile__roles">2 <span data-i18n="common.openRoles">open roles</span></p>
-          </article>
-        </li>
-        <li class="companies__item">
-          <article class="company-tile">
-            <span class="avatar avatar--light company-tile__avatar" aria-hidden="true">K</span>
-            <h3 class="company-tile__name">Kyiv Cloud</h3>
-            <p class="company-tile__roles">3 <span data-i18n="common.openRoles">open roles</span></p>
-          </article>
-        </li>
-        <li class="companies__item">
-          <article class="company-tile">
-            <span class="avatar avatar--gray company-tile__avatar" aria-hidden="true">P</span>
-            <h3 class="company-tile__name">Pixelforge</h3>
-            <p class="company-tile__roles">4 <span data-i18n="common.openRoles">open roles</span></p>
-          </article>
-        </li>
-        <li class="companies__item">
-          <article class="company-tile">
-            <span class="avatar avatar--dark company-tile__avatar" aria-hidden="true">T</span>
-            <h3 class="company-tile__name">TestHive</h3>
-            <p class="company-tile__roles">5 <span data-i18n="common.openRoles">open roles</span></p>
-          </article>
-        </li>
-        <li class="companies__item">
-          <article class="company-tile">
-            <span class="avatar avatar--light company-tile__avatar" aria-hidden="true">C</span>
-            <h3 class="company-tile__name">Cloudway</h3>
-            <p class="company-tile__roles">6 <span data-i18n="common.openRoles">open roles</span></p>
-          </article>
-        </li>
-        <li class="companies__item">
-          <article class="company-tile">
-            <span class="avatar avatar--gray company-tile__avatar" aria-hidden="true">S</span>
-            <h3 class="company-tile__name">Startly</h3>
-            <p class="company-tile__roles">7 <span data-i18n="common.openRoles">open roles</span></p>
-          </article>
-        </li>
+        <% companies.forEach((company) => { %>
+        <li class="companies__item"><%- include("partials/company-tile", { company }) %></li>
+        <% }); %>
       </ul>
     </section>
 
@@ -217,9 +105,6 @@
     </section>
   </main>
 
-  <footer class="footer">
-    <p class="footer__title" data-i18n="common.brand">DevJobs</p>
-    <p class="footer__text" data-i18n="footer.tagline">Startup Job Board for IT</p>
-  </footer>
+  <%- include("partials/footer") %>
 </body>
 </html>

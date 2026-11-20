@@ -1,0 +1,19 @@
+<%# job: { title, company, hours, workType, level, stack[], salary, postedAt, posted }, company: { name, logo, tone } %>
+<article class="job-card">
+  <div class="job-card__logo"><%- include('company-logo', { company }) %></div>
+  <div class="job-card__body">
+    <h3 class="job-card__title"><a class="job-card__link" href="job.html"><%= job.title %></a></h3>
+    <p class="job-card__meta"><%= job.company %> · <%= job.hours %> <span data-i18n="common.hoursPerWeek">h/week</span></p>
+    <ul class="job-card__tags" aria-label="Tags" data-i18n-aria-label="common.tags">
+      <li class="tag<%= job.workType === 'Remote' ? ' tag--remote' : '' %>"><%= job.workType %></li>
+      <li class="tag tag--level"><%= job.level %></li>
+      <% job.stack.forEach((skill) => { %>
+      <li class="tag"><%= skill %></li>
+      <% }); %>
+    </ul>
+  </div>
+  <div class="job-card__footer">
+    <p class="job-card__salary"><%= job.salary %></p>
+    <p class="job-card__posted"><time datetime="<%= job.postedAt %>"><%= job.posted %></time></p>
+  </div>
+</article>

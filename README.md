@@ -7,6 +7,7 @@ Data: jobs, companies and applications, served locally by json-server.
 
 ## Stack
 - Vite, with plain ES modules and classes (no UI frameworks, no TypeScript)
+- EJS partials for repeated static blocks (head, footer, job card), rendered at build time by vite-plugin-ejs
 - SCSS with a 7-1 architecture and BEM naming
 - axios and dayjs
 - json-server 0.17 as the mock REST API
@@ -47,6 +48,10 @@ Query parameters: `_page`, `_limit`, `_sort`, `_order`, `q`, and field filters s
 api/            db.json, routes.json (mock API)
 src/           Vite root: every src/*.html is a page of the multi-page build
   index.html
+  partials/     EJS partials: head, footer, job-card
+  data/         sample content for the static pages (used by EJS at build time)
+  i18n/         en.json: UI text dictionary for data-i18n keys
+  assets/img/   images (webp + jpg)
   styles/       SCSS 7-1: abstracts, base, components, layout, pages, themes, vendors, main.scss
   js/
     api/        http client and endpoints
