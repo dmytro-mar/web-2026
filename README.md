@@ -30,8 +30,6 @@ npm run dev:vite
 | `npm run preview:vite` | Lints, then serves the production build |
 | `npm run lint` | Runs ESLint over the project |
 
-Webpack equivalents (`*:webpack`) are kept from the course template.
-
 ## API
 json-server reads `api/db.json`, and `api/routes.json` maps short routes onto its collections. Endpoints for this project:
 
