@@ -63,7 +63,7 @@
       </div>
 
       <ul class="job-list">
-        <% jobs.forEach((job) => { %>
+        <% jobs.slice(0, 4).forEach((job) => { %>
         <li class="job-list__item"><%- include("partials/job-card", { job, company: companyByName[job.company] }) %></li>
         <% }); %>
       </ul>

@@ -59,5 +59,41 @@
       "text": "Apply in two minutes.",
       "button": "Browse all jobs"
     }
+  },
+  "jobs": {
+    "metaTitle": "Jobs | DevJobs",
+    "title": "Jobs",
+    "results": "results",
+    "resultsTitle": "Job results",
+    "filters": {
+      "label": "Filters",
+      "workType": "Work type",
+      "remote": "Remote",
+      "hybrid": "Hybrid",
+      "onsite": "Onsite",
+      "level": "Level",
+      "junior": "Junior",
+      "middle": "Middle",
+      "senior": "Senior",
+      "more": "More filters",
+      "stack": "Stack",
+      "salaryFrom": "Salary from, $",
+      "sortBy": "Sort by",
+      "sortNew": "Newest",
+      "sortSalaryDesc": "Salary: high to low",
+      "sortSalaryAsc": "Salary: low to high",
+      "hours": "Hours per week",
+      "hoursFrom": "Hours/week from",
+      "hoursTo": "to",
+      "strict": "Strict match",
+      "strictHint": "Whole job range must fit inside the filter",
+      "show": "Show jobs",
+      "reset": "Reset"
+    },
+    "pagination": {
+      "label": "Pagination",
+      "prev": "Previous page",
+      "next": "Next page"
+    }
   }
 }

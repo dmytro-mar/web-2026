@@ -19,5 +19,15 @@ export const jobs = [
     title: "QA Automation Engineer", company: "TestHive", hoursMin: 10, hoursMax: 15,
     workType: "Onsite", level: "Junior", stack: ["Python", "Selenium"],
     salaryMin: 1500, salaryMax: 2200, postedAt: "2026-11-15", posted: "5 days ago"
+  },
+  {
+    title: "DevOps Engineer", company: "Cloudway", hoursMin: 40, hoursMax: 40,
+    workType: "Remote", level: "Senior", stack: ["Kubernetes", "AWS"],
+    salaryMin: 4500, salaryMax: 6500, postedAt: "2026-11-13", posted: "1 week ago"
+  },
+  {
+    title: "Product Manager", company: "Startly", hoursMin: 30, hoursMax: 40,
+    workType: "Hybrid", level: "Middle", stack: ["Roadmap", "Analytics"],
+    salaryMin: 3500, salaryMax: 5000, postedAt: "2026-11-13", posted: "1 week ago"
   }
 ];
