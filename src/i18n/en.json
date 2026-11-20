@@ -1,0 +1,63 @@
+{
+  "common": {
+    "skipLink": "Skip to content",
+    "brand": "DevJobs",
+    "tags": "Tags",
+    "hoursPerWeek": "h/week",
+    "openRoles": "open roles"
+  },
+  "nav": {
+    "label": "Main",
+    "home": "Home",
+    "jobs": "Jobs"
+  },
+  "footer": {
+    "tagline": "Startup Job Board for IT"
+  },
+  "search": {
+    "label": "Search jobs",
+    "placeholder": "Job title or keyword",
+    "submit": "Search"
+  },
+  "home": {
+    "metaTitle": "DevJobs | IT jobs at startups",
+    "title": "Search IT jobs at startups",
+    "popularSearches": "Popular searches",
+    "quick": {
+      "remote": "Remote",
+      "junior": "Junior",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "design": "Design"
+    },
+    "stats": {
+      "title": "DevJobs in numbers",
+      "openJobs": "open jobs",
+      "startups": "startups",
+      "newToday": "new today"
+    },
+    "latest": {
+      "title": "Latest jobs",
+      "viewAll": "View all",
+      "viewAllHidden": " jobs",
+      "showMore": "Show more jobs"
+    },
+    "companies": {
+      "title": "Top companies"
+    },
+    "howItWorks": {
+      "title": "How it works",
+      "searchTitle": "Search",
+      "searchText": "Filter jobs",
+      "openTitle": "Open",
+      "openText": "Read the details",
+      "applyTitle": "Apply",
+      "applyText": "Send in minutes"
+    },
+    "cta": {
+      "title": "Ready to join a startup?",
+      "text": "Apply in two minutes.",
+      "button": "Browse all jobs"
+    }
+  }
+}
