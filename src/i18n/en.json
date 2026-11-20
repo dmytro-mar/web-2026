@@ -142,5 +142,16 @@
     "consentError": "Please confirm to continue",
     "send": "Send application",
     "cancel": "Cancel"
+  },
+  "sent": {
+    "metaTitle": "Application sent | DevJobs",
+    "title": "Application sent",
+    "text": "The employer will contact you by email.",
+    "job": "Job",
+    "company": "Company",
+    "name": "Name",
+    "email": "Email",
+    "date": "Date",
+    "backToJobs": "Back to jobs"
   }
 }
