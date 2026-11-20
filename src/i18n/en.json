@@ -114,5 +114,33 @@
     },
     "perMonth": "per month",
     "applyNow": "Apply now"
+  },
+  "apply": {
+    "breadcrumb": "Apply",
+    "titlePrefix": "Apply for",
+    "intro": "Takes about 2 minutes.",
+    "summary": "Job summary",
+    "requiredNote": "required",
+    "contactLegend": "Contact details",
+    "applicationLegend": "Application",
+    "name": "Full name",
+    "namePlaceholder": "Your full name",
+    "nameError": "Enter your name",
+    "email": "Email",
+    "emailError": "Enter a valid email, e.g. name@mail.com",
+    "phone": "Phone",
+    "optional": "(optional)",
+    "phoneError": "Enter a phone number, e.g. +380 50 123 45 67",
+    "portfolio": "Portfolio / LinkedIn / GitHub",
+    "urlError": "Enter a link starting with https://",
+    "cv": "CV link",
+    "cvHint": "Google Drive, Dropbox or a PDF link",
+    "cvError": "Add a link to your CV",
+    "coverLetter": "Cover letter",
+    "coverLetterPlaceholder": "Tell us why you are a good fit...",
+    "consent": "I agree to the processing of my personal data",
+    "consentError": "Please confirm to continue",
+    "send": "Send application",
+    "cancel": "Cancel"
   }
 }
