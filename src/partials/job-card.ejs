@@ -1,5 +1,5 @@
 <%#
-  job: { title, company, hoursMin, hoursMax, workType, level, stack[], salaryMin, salaryMax, postedAt, posted }
+  job: { title, company, hoursMin, hoursMax, workType, countries[], level, stack[], salaryMin, salaryMax, postedAt, posted }
   company: { name, logo, tone }
 %>
 <%
@@ -31,6 +31,19 @@
     <meta itemprop="employmentType" content="<%= employmentType %>">
     <% if (isRemote) { %>
     <meta itemprop="jobLocationType" content="TELECOMMUTE">
+    <% job.countries.forEach((country) => { %>
+    <span itemprop="applicantLocationRequirements" itemscope itemtype="https://schema.org/Country">
+      <meta itemprop="name" content="<%= country %>">
+    </span>
+    <% }); %>
+    <% } else { %>
+    <% job.countries.forEach((country) => { %>
+    <span itemprop="jobLocation" itemscope itemtype="https://schema.org/Place">
+      <span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+        <meta itemprop="addressCountry" content="<%= country %>">
+      </span>
+    </span>
+    <% }); %>
     <% } %>
 
     <ul class="job-card__tags" aria-label="Tags" data-i18n-aria-label="common.tags">
