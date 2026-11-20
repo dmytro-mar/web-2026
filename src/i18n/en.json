@@ -92,7 +92,6 @@
     },
     "pagination": {
       "label": "Pagination",
-      "prev": "Previous page",
       "next": "Next page"
     }
   },
