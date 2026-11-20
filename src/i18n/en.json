@@ -95,5 +95,24 @@
       "prev": "Previous page",
       "next": "Next page"
     }
+  },
+  "details": {
+    "breadcrumb": "Breadcrumb",
+    "posted": "Posted",
+    "onThisPage": "On this page",
+    "overview": "Overview",
+    "requirements": "Requirements",
+    "benefits": "Benefits",
+    "company": "Company",
+    "similar": "Similar jobs",
+    "facts": {
+      "workType": "Work type",
+      "level": "Level",
+      "hours": "Hours",
+      "salary": "Salary",
+      "posted": "Posted"
+    },
+    "perMonth": "per month",
+    "applyNow": "Apply now"
   }
 }

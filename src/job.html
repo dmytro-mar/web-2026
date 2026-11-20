@@ -1,0 +1,187 @@
+<%
+  const job = jobs[0];
+  const company = companyByName[job.company];
+  const similarJobs = [jobs[2], jobs[3]];
+  const hours = job.hoursMin === job.hoursMax ? `${job.hoursMin}` : `${job.hoursMin}–${job.hoursMax}`;
+  const salary = `$${job.salaryMin.toLocaleString('en-US')}–${job.salaryMax.toLocaleString('en-US')}`;
+  const employmentType = (job.hoursMin + job.hoursMax) / 2 >= 35 ? 'FULL_TIME' : 'PART_TIME';
+  const isRemote = job.workType === 'Remote';
+-%>
+<!doctype html>
+<html lang="en">
+<head>
+  <%- include('partials/head', {
+    title: `${job.title} at ${job.company} | DevJobs`,
+    description: `${job.title} at ${job.company}: ${job.workType.toLowerCase()}, ${job.level.toLowerCase()} level, ${salary} per month.`
+  }) %>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="common.skipLink">Skip to content</a>
+
+  <header class="header">
+    <a class="header__logo" href="index.html">
+      <picture class="header__logo-picture">
+        <source type="image/webp" srcset="assets/img/logo-28.webp 1x, assets/img/logo-56.webp 2x">
+        <img class="header__logo-mark" src="assets/img/logo-28.jpg" srcset="assets/img/logo-28.jpg 1x, assets/img/logo-56.jpg 2x" width="28" height="28" alt="">
+      </picture>
+      <span class="header__logo-text" data-i18n="common.brand">DevJobs</span>
+    </a>
+    <nav class="nav" aria-label="Main" data-i18n-aria-label="nav.label">
+      <ul class="nav__list">
+        <li class="nav__item"><a class="nav__link" href="index.html" data-i18n="nav.home">Home</a></li>
+        <li class="nav__item"><a class="nav__link nav__link--active" href="jobs.html" aria-current="true" data-i18n="nav.jobs">Jobs</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="job-details" id="main">
+    <nav class="breadcrumbs" aria-label="Breadcrumb" data-i18n-aria-label="details.breadcrumb">
+      <ol class="breadcrumbs__list">
+        <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="jobs.html" data-i18n="nav.jobs">Jobs</a></li>
+        <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="job.html" aria-current="page"><%= job.title %></a></li>
+      </ol>
+    </nav>
+
+    <article class="job" itemscope itemtype="https://schema.org/JobPosting">
+      <header class="job__header">
+        <picture class="company-logo job__logo">
+          <source type="image/webp" srcset="assets/img/logos/<%= company.logo %>-64.webp 64w, assets/img/logos/<%= company.logo %>-128.webp 128w" sizes="64px">
+          <img class="company-logo__img" src="assets/img/logos/<%= company.logo %>-64.jpg" srcset="assets/img/logos/<%= company.logo %>-64.jpg 64w, assets/img/logos/<%= company.logo %>-128.jpg 128w" sizes="64px" width="64" height="64" alt="">
+        </picture>
+        <h1 class="job__title" itemprop="title"><%= job.title %></h1>
+        <p class="job__meta">
+          <span itemprop="hiringOrganization" itemscope itemtype="https://schema.org/Organization">
+            <span itemprop="name"><%= job.company %></span>
+          </span>
+          ·
+          <span data-i18n="details.posted">Posted</span>
+          <time itemprop="datePosted" datetime="<%= job.postedAt %>"><%= job.posted %></time>
+        </p>
+        <ul class="job__tags" aria-label="Tags" data-i18n-aria-label="common.tags">
+          <li class="tag<%= isRemote ? ' tag--remote' : '' %>"><%= job.workType %></li>
+          <li class="tag tag--level" itemprop="experienceRequirements"><%= job.level %></li>
+          <% job.stack.forEach((skill) => { %>
+          <li class="tag" itemprop="skills"><%= skill %></li>
+          <% }); %>
+        </ul>
+      </header>
+
+      <meta itemprop="employmentType" content="<%= employmentType %>">
+      <% if (isRemote) { %>
+      <meta itemprop="jobLocationType" content="TELECOMMUTE">
+      <% job.countries.forEach((country) => { %>
+      <span itemprop="applicantLocationRequirements" itemscope itemtype="https://schema.org/Country">
+        <meta itemprop="name" content="<%= country %>">
+      </span>
+      <% }); %>
+      <% } else { %>
+      <% job.countries.forEach((country) => { %>
+      <span itemprop="jobLocation" itemscope itemtype="https://schema.org/Place">
+        <span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+          <meta itemprop="addressCountry" content="<%= country %>">
+        </span>
+      </span>
+      <% }); %>
+      <% } %>
+
+      <nav class="anchor-nav job__anchors" aria-labelledby="anchor-nav-title">
+        <h2 class="anchor-nav__title" id="anchor-nav-title" data-i18n="details.onThisPage">On this page</h2>
+        <ul class="anchor-nav__list">
+          <li class="anchor-nav__item"><a class="anchor-nav__link" href="#overview" data-i18n="details.overview">Overview</a></li>
+          <li class="anchor-nav__item"><a class="anchor-nav__link" href="#requirements" data-i18n="details.requirements">Requirements</a></li>
+          <li class="anchor-nav__item"><a class="anchor-nav__link" href="#benefits" data-i18n="details.benefits">Benefits</a></li>
+          <li class="anchor-nav__item"><a class="anchor-nav__link" href="#company" data-i18n="details.company">Company</a></li>
+          <li class="anchor-nav__item"><a class="anchor-nav__link" href="#similar" data-i18n="details.similar">Similar jobs</a></li>
+        </ul>
+      </nav>
+
+      <dl class="job-facts job__facts">
+        <div class="job-facts__row">
+          <dt class="job-facts__term" data-i18n="details.facts.workType">Work type</dt>
+          <dd class="job-facts__value"><%= job.workType %></dd>
+        </div>
+        <div class="job-facts__row">
+          <dt class="job-facts__term" data-i18n="details.facts.level">Level</dt>
+          <dd class="job-facts__value"><%= job.level %></dd>
+        </div>
+        <div class="job-facts__row">
+          <dt class="job-facts__term" data-i18n="details.facts.hours">Hours</dt>
+          <dd class="job-facts__value" itemprop="workHours"><%= hours %> <span data-i18n="common.hoursPerWeek">h/week</span></dd>
+        </div>
+        <div class="job-facts__row">
+          <dt class="job-facts__term" data-i18n="details.facts.salary">Salary</dt>
+          <dd class="job-facts__value" itemprop="baseSalary" itemscope itemtype="https://schema.org/MonetaryAmount">
+            <meta itemprop="currency" content="USD">
+            <span itemprop="value" itemscope itemtype="https://schema.org/QuantitativeValue">
+              <meta itemprop="minValue" content="<%= job.salaryMin %>">
+              <meta itemprop="maxValue" content="<%= job.salaryMax %>">
+              <meta itemprop="unitText" content="MONTH">
+              <%= salary %>
+            </span>
+          </dd>
+        </div>
+        <div class="job-facts__row">
+          <dt class="job-facts__term" data-i18n="details.facts.posted">Posted</dt>
+          <dd class="job-facts__value"><time datetime="<%= job.postedAt %>"><%= job.posted %></time></dd>
+        </div>
+      </dl>
+
+      <section class="job__section" id="overview" aria-labelledby="overview-title">
+        <h2 class="job__section-title" id="overview-title" data-i18n="details.overview">Overview</h2>
+        <div itemprop="description">
+          <p>Nova Labs is building a collaborative analytics tool for small product teams. As a frontend developer you will own the main dashboard: from component architecture to performance and accessibility.</p>
+          <p>You will work closely with a designer and two backend engineers, ship features every week and take part in planning and code review.</p>
+        </div>
+      </section>
+
+      <section class="job__section" id="requirements" aria-labelledby="requirements-title">
+        <h2 class="job__section-title" id="requirements-title" data-i18n="details.requirements">Requirements</h2>
+        <ul class="job__list" itemprop="qualifications">
+          <li>3+ years of commercial React experience</li>
+          <li>TypeScript and modern tooling</li>
+          <li>Experience with REST / GraphQL APIs</li>
+          <li>Comfortable with code review and tests</li>
+          <li>English B1 or higher</li>
+        </ul>
+      </section>
+
+      <section class="job__section" id="benefits" aria-labelledby="benefits-title">
+        <h2 class="job__section-title" id="benefits-title" data-i18n="details.benefits">Benefits</h2>
+        <ul class="job__benefits" itemprop="jobBenefits">
+          <li class="tag">Remote-first</li>
+          <li class="tag">Flexible hours</li>
+          <li class="tag">Equity</li>
+          <li class="tag">Learning budget</li>
+        </ul>
+      </section>
+
+      <section class="job__section" id="company" aria-labelledby="company-title">
+        <h2 class="job__section-title" id="company-title" data-i18n="details.company">Company</h2>
+        <div class="company-card">
+          <div class="company-card__logo"><%- include('partials/company-logo', { company }) %></div>
+          <h3 class="company-card__name"><%= company.name %></h3>
+          <p class="company-card__meta"><%= company.type %> · <%= company.size %></p>
+          <p class="company-card__text">A product startup from Kyiv that helps small teams understand their users. Remote-first since day one, with a small office for in-person workshops.</p>
+        </div>
+      </section>
+    </article>
+
+    <section class="similar-jobs" id="similar" aria-labelledby="similar-title">
+      <h2 class="similar-jobs__title" id="similar-title" data-i18n="details.similar">Similar jobs</h2>
+      <ul class="job-list job-list--grid">
+        <% similarJobs.forEach((similar) => { %>
+        <li class="job-list__item"><%- include("partials/job-card", { job: similar, company: companyByName[similar.company] }) %></li>
+        <% }); %>
+      </ul>
+    </section>
+
+    <div class="apply-bar">
+      <p class="apply-bar__salary"><%= salary %></p>
+      <p class="apply-bar__meta"><span data-i18n="details.perMonth">per month</span> · <%= job.workType %></p>
+      <a class="button button--primary apply-bar__button" href="apply.html" data-i18n="details.applyNow">Apply now</a>
+    </div>
+  </main>
+
+  <%- include("partials/footer") %>
+</body>
+</html>
