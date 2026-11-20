@@ -1,0 +1,120 @@
+<%
+  const job = jobs[0];
+  const company = companyByName[job.company];
+  const hours = job.hoursMin === job.hoursMax ? `${job.hoursMin}` : `${job.hoursMin}–${job.hoursMax}`;
+  const salary = `$${job.salaryMin.toLocaleString('en-US')}–${job.salaryMax.toLocaleString('en-US')}`;
+-%>
+<!doctype html>
+<html lang="en">
+<head>
+  <%- include('partials/head', {
+    title: `Apply for ${job.title} | DevJobs`,
+    description: `Apply for ${job.title} at ${job.company}. It takes about 2 minutes.`
+  }) %>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="common.skipLink">Skip to content</a>
+
+  <header class="header">
+    <a class="header__logo" href="index.html">
+      <picture class="header__logo-picture">
+        <source type="image/webp" srcset="assets/img/logo-28.webp 1x, assets/img/logo-56.webp 2x">
+        <img class="header__logo-mark" src="assets/img/logo-28.jpg" srcset="assets/img/logo-28.jpg 1x, assets/img/logo-56.jpg 2x" width="28" height="28" alt="">
+      </picture>
+      <span class="header__logo-text" data-i18n="common.brand">DevJobs</span>
+    </a>
+    <nav class="nav" aria-label="Main" data-i18n-aria-label="nav.label">
+      <ul class="nav__list">
+        <li class="nav__item"><a class="nav__link" href="index.html" data-i18n="nav.home">Home</a></li>
+        <li class="nav__item"><a class="nav__link nav__link--active" href="jobs.html" aria-current="true" data-i18n="nav.jobs">Jobs</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="apply" id="main">
+    <nav class="breadcrumbs" aria-label="Breadcrumb" data-i18n-aria-label="details.breadcrumb">
+      <ol class="breadcrumbs__list">
+        <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="jobs.html" data-i18n="nav.jobs">Jobs</a></li>
+        <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="job.html"><%= job.title %></a></li>
+        <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="apply.html" aria-current="page" data-i18n="apply.breadcrumb">Apply</a></li>
+      </ol>
+    </nav>
+
+    <h1 class="apply__title"><span data-i18n="apply.titlePrefix">Apply for</span> <%= job.title %></h1>
+    <p class="apply__intro" data-i18n="apply.intro">Takes about 2 minutes.</p>
+
+    <section class="job-summary apply__job" aria-label="Job summary" data-i18n-aria-label="apply.summary">
+      <picture class="company-logo job-summary__logo">
+        <source type="image/webp" srcset="assets/img/logos/<%= company.logo %>-64.webp 64w, assets/img/logos/<%= company.logo %>-128.webp 128w" sizes="64px">
+        <img class="company-logo__img" src="assets/img/logos/<%= company.logo %>-64.jpg" srcset="assets/img/logos/<%= company.logo %>-64.jpg 64w, assets/img/logos/<%= company.logo %>-128.jpg 128w" sizes="64px" width="64" height="64" alt="">
+      </picture>
+      <p class="job-summary__title"><a class="job-summary__link" href="job.html"><%= job.title %></a></p>
+      <p class="job-summary__meta"><%= job.company %> · <%= hours %> <span data-i18n="common.hoursPerWeek">h/week</span></p>
+      <p class="job-summary__salary"><%= salary %></p>
+      <p class="job-summary__posted"><time datetime="<%= job.postedAt %>"><%= job.posted %></time></p>
+    </section>
+
+    <form class="apply-form" action="sent.html" method="post">
+      <p class="apply-form__note"><span aria-hidden="true">*</span> <span data-i18n="apply.requiredNote">required</span></p>
+      <input type="hidden" name="jobId" value="1">
+
+      <fieldset class="apply-form__group">
+        <legend class="hidden" data-i18n="apply.contactLegend">Contact details</legend>
+
+        <div class="field">
+          <label class="field__label" for="name"><span data-i18n="apply.name">Full name</span> <span aria-hidden="true">*</span></label>
+          <input class="input field__input" id="name" name="name" type="text" required minlength="2" maxlength="60" autocomplete="name" placeholder="Your full name" data-i18n-placeholder="apply.namePlaceholder" aria-describedby="name-error">
+          <p class="field__error" id="name-error" data-i18n="apply.nameError">Enter your name</p>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="email"><span data-i18n="apply.email">Email</span> <span aria-hidden="true">*</span></label>
+          <input class="input field__input" id="email" name="email" type="email" required maxlength="100" autocomplete="email" placeholder="name@mail.com" aria-describedby="email-error">
+          <p class="field__error" id="email-error" data-i18n="apply.emailError">Enter a valid email, e.g. name@mail.com</p>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="phone"><span data-i18n="apply.phone">Phone</span> <span data-i18n="apply.optional">(optional)</span></label>
+          <input class="input field__input" id="phone" name="phone" type="tel" pattern="\+?[0-9 \(\)\-]{7,20}" maxlength="20" autocomplete="tel" placeholder="+380 ..." aria-describedby="phone-error">
+          <p class="field__error" id="phone-error" data-i18n="apply.phoneError">Enter a phone number, e.g. +380 50 123 45 67</p>
+        </div>
+      </fieldset>
+
+      <fieldset class="apply-form__group">
+        <legend class="hidden" data-i18n="apply.applicationLegend">Application</legend>
+
+        <div class="field">
+          <label class="field__label" for="portfolio" data-i18n="apply.portfolio">Portfolio / LinkedIn / GitHub</label>
+          <input class="input field__input" id="portfolio" name="portfolio" type="url" maxlength="200" autocomplete="url" placeholder="https://" aria-describedby="portfolio-error">
+          <p class="field__error" id="portfolio-error" data-i18n="apply.urlError">Enter a link starting with https://</p>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="cv"><span data-i18n="apply.cv">CV link</span> <span aria-hidden="true">*</span></label>
+          <input class="input field__input" id="cv" name="cvLink" type="url" required maxlength="200" placeholder="https://" aria-describedby="cv-hint cv-error">
+          <p class="field__hint" id="cv-hint" data-i18n="apply.cvHint">Google Drive, Dropbox or a PDF link</p>
+          <p class="field__error" id="cv-error" data-i18n="apply.cvError">Add a link to your CV</p>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="cover-letter" data-i18n="apply.coverLetter">Cover letter</label>
+          <textarea class="input field__input field__input--textarea" id="cover-letter" name="coverLetter" rows="5" maxlength="2000" placeholder="Tell us why you are a good fit..." data-i18n-placeholder="apply.coverLetterPlaceholder"></textarea>
+        </div>
+      </fieldset>
+
+      <div class="field field--checkbox">
+        <input class="checkbox field__checkbox" id="consent" name="consent" type="checkbox" value="1" required aria-describedby="consent-error">
+        <label class="field__label" for="consent"><span data-i18n="apply.consent">I agree to the processing of my personal data</span> <span aria-hidden="true">*</span></label>
+        <p class="field__error" id="consent-error" data-i18n="apply.consentError">Please confirm to continue</p>
+      </div>
+
+      <div class="apply-form__actions">
+        <button class="button button--primary" type="submit" data-i18n="apply.send">Send application</button>
+        <a class="button button--outline" href="job.html" data-i18n="apply.cancel">Cancel</a>
+      </div>
+    </form>
+  </main>
+
+  <%- include("partials/footer") %>
+</body>
+</html>

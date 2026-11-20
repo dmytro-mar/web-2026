@@ -1,0 +1,9 @@
+<%# company: { name, logo, tone } %>
+<% if (company.logo) { %>
+<picture class="company-logo">
+  <source type="image/webp" srcset="assets/img/logos/<%= company.logo %>-64.webp 64w, assets/img/logos/<%= company.logo %>-128.webp 128w" sizes="64px">
+  <img class="company-logo__img" src="assets/img/logos/<%= company.logo %>-64.jpg" srcset="assets/img/logos/<%= company.logo %>-64.jpg 64w, assets/img/logos/<%= company.logo %>-128.jpg 128w" sizes="64px" width="64" height="64" alt="" loading="lazy">
+</picture>
+<% } else { %>
+<span class="company-logo company-logo--<%= company.tone %>" aria-hidden="true"><%= company.name.charAt(0) %></span>
+<% } %>

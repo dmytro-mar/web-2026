@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <%- include('partials/head', {
+    title: 'Jobs | DevJobs',
+    titleKey: 'jobs.metaTitle',
+    description: 'Browse IT jobs at startups. Filter by work type, level, stack, salary and hours per week.'
+  }) %>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="common.skipLink">Skip to content</a>
+
+  <header class="header">
+    <a class="header__logo" href="index.html">
+      <picture class="header__logo-picture">
+        <source type="image/webp" srcset="assets/img/logo-28.webp 1x, assets/img/logo-56.webp 2x">
+        <img class="header__logo-mark" src="assets/img/logo-28.jpg" srcset="assets/img/logo-28.jpg 1x, assets/img/logo-56.jpg 2x" width="28" height="28" alt="">
+      </picture>
+      <span class="header__logo-text" data-i18n="common.brand">DevJobs</span>
+    </a>
+    <nav class="nav" aria-label="Main" data-i18n-aria-label="nav.label">
+      <ul class="nav__list">
+        <li class="nav__item"><a class="nav__link" href="index.html" data-i18n="nav.home">Home</a></li>
+        <li class="nav__item"><a class="nav__link nav__link--active" href="jobs.html" aria-current="page" data-i18n="nav.jobs">Jobs</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="jobs" id="main">
+    <div class="jobs__header">
+      <h1 class="jobs__title" data-i18n="jobs.title">Jobs</h1>
+      <p class="jobs__count" role="status"><span class="jobs__count-value">120</span> <span data-i18n="jobs.results">results</span></p>
+    </div>
+
+    <aside class="filters" aria-label="Filters" data-i18n-aria-label="jobs.filters.label">
+      <form class="filters__form" action="jobs.html" method="get">
+        <div class="search-bar filters__search" role="search">
+          <label class="hidden" for="jobs-search" data-i18n="search.label">Search jobs</label>
+          <input class="search-bar__input" id="jobs-search" name="q" type="search" placeholder="Job title or keyword" data-i18n-placeholder="search.placeholder" autocomplete="off">
+          <button class="search-bar__button" type="submit" data-i18n="search.submit">Search</button>
+        </div>
+
+        <fieldset class="filters__group">
+          <legend class="filters__legend" data-i18n="jobs.filters.workType">Work type</legend>
+          <label class="chip"><input class="chip__input" type="checkbox" name="work" value="Remote"> <span class="chip__text" data-i18n="jobs.filters.remote">Remote</span></label>
+          <label class="chip"><input class="chip__input" type="checkbox" name="work" value="Hybrid"> <span class="chip__text" data-i18n="jobs.filters.hybrid">Hybrid</span></label>
+          <label class="chip"><input class="chip__input" type="checkbox" name="work" value="Onsite"> <span class="chip__text" data-i18n="jobs.filters.onsite">Onsite</span></label>
+        </fieldset>
+
+        <fieldset class="filters__group">
+          <legend class="filters__legend" data-i18n="jobs.filters.level">Level</legend>
+          <label class="chip"><input class="chip__input" type="checkbox" name="level" value="Junior"> <span class="chip__text" data-i18n="jobs.filters.junior">Junior</span></label>
+          <label class="chip"><input class="chip__input" type="checkbox" name="level" value="Middle"> <span class="chip__text" data-i18n="jobs.filters.middle">Middle</span></label>
+          <label class="chip"><input class="chip__input" type="checkbox" name="level" value="Senior"> <span class="chip__text" data-i18n="jobs.filters.senior">Senior</span></label>
+        </fieldset>
+
+        <div class="filters__bar">
+          <details class="more-filters">
+            <summary class="more-filters__toggle" data-i18n="jobs.filters.more">More filters</summary>
+
+            <div class="more-filters__panel">
+              <fieldset class="more-filters__group">
+                <legend class="more-filters__legend" data-i18n="jobs.filters.stack">Stack</legend>
+                <label class="chip"><input class="chip__input" type="checkbox" name="stack" value="React"> <span class="chip__text">React</span></label>
+                <label class="chip"><input class="chip__input" type="checkbox" name="stack" value="Go"> <span class="chip__text">Go</span></label>
+                <label class="chip"><input class="chip__input" type="checkbox" name="stack" value="Python"> <span class="chip__text">Python</span></label>
+                <label class="chip"><input class="chip__input" type="checkbox" name="stack" value="Figma"> <span class="chip__text">Figma</span></label>
+                <label class="chip"><input class="chip__input" type="checkbox" name="stack" value="Java"> <span class="chip__text">Java</span></label>
+                <label class="chip"><input class="chip__input" type="checkbox" name="stack" value="AWS"> <span class="chip__text">AWS</span></label>
+              </fieldset>
+
+              <div class="more-filters__field">
+                <label class="more-filters__label" for="salary-min" data-i18n="jobs.filters.salaryFrom">Salary from, $</label>
+                <input class="input" id="salary-min" name="min" type="number" min="0" step="100" placeholder="2000" inputmode="numeric">
+              </div>
+
+              <div class="more-filters__field">
+                <label class="more-filters__label" for="sort" data-i18n="jobs.filters.sortBy">Sort by</label>
+                <select class="input" id="sort" name="sort">
+                  <option value="new" data-i18n="jobs.filters.sortNew">Newest</option>
+                  <option value="salary-desc" data-i18n="jobs.filters.sortSalaryDesc">Salary: high to low</option>
+                  <option value="salary-asc" data-i18n="jobs.filters.sortSalaryAsc">Salary: low to high</option>
+                </select>
+              </div>
+
+              <fieldset class="more-filters__group more-filters__hours">
+                <legend class="hidden" data-i18n="jobs.filters.hours">Hours per week</legend>
+                <div class="more-filters__field">
+                  <label class="more-filters__label" for="hours-min" data-i18n="jobs.filters.hoursFrom">Hours/week from</label>
+                  <input class="input" id="hours-min" name="hmin" type="number" min="0" max="168" placeholder="10" inputmode="numeric">
+                </div>
+                <div class="more-filters__field">
+                  <label class="more-filters__label" for="hours-max" data-i18n="jobs.filters.hoursTo">to</label>
+                  <input class="input" id="hours-max" name="hmax" type="number" min="0" max="168" placeholder="20" inputmode="numeric">
+                </div>
+                <div class="more-filters__check">
+                  <input class="checkbox" id="hours-strict" name="strict" type="checkbox" value="1" aria-describedby="hours-strict-hint">
+                  <label for="hours-strict" data-i18n="jobs.filters.strict">Strict match</label>
+                  <p class="more-filters__hint" id="hours-strict-hint" data-i18n="jobs.filters.strictHint">Whole job range must fit inside the filter</p>
+                </div>
+              </fieldset>
+
+              <button class="button button--primary more-filters__submit" type="submit" data-i18n="jobs.filters.show">Show jobs</button>
+            </div>
+          </details>
+
+          <a class="filters__reset" href="jobs.html" data-i18n="jobs.filters.reset">Reset</a>
+        </div>
+      </form>
+    </aside>
+
+    <section class="results" aria-labelledby="results-title">
+      <h2 class="hidden" id="results-title" data-i18n="jobs.resultsTitle">Job results</h2>
+      <ul class="job-list job-list--grid">
+        <% jobs.forEach((job) => { %>
+        <li class="job-list__item"><%- include("partials/job-card", { job, company: companyByName[job.company] }) %></li>
+        <% }); %>
+      </ul>
+
+      <nav class="pagination" aria-label="Pagination" data-i18n-aria-label="jobs.pagination.label">
+        <ul class="pagination__list">
+          <li class="pagination__item"><span class="pagination__link pagination__link--prev pagination__link--disabled" aria-hidden="true">&lt;</span></li>
+          <li class="pagination__item"><a class="pagination__link pagination__link--active" href="jobs.html?page=1" aria-current="page">1</a></li>
+          <li class="pagination__item"><a class="pagination__link" href="jobs.html?page=2">2</a></li>
+          <li class="pagination__item"><a class="pagination__link" href="jobs.html?page=3">3</a></li>
+          <li class="pagination__item"><a class="pagination__link pagination__link--next" href="jobs.html?page=2" aria-label="Next page" data-i18n-aria-label="jobs.pagination.next">&gt;</a></li>
+        </ul>
+      </nav>
+    </section>
+  </main>
+
+  <%- include("partials/footer") %>
+</body>
+</html>

@@ -2,11 +2,24 @@
 
 A job board for IT startups.
 
-Pages: **Home**, **Jobs**, **Job details** and **Apply**.
+**Preview:** https://dmytro-mar.github.io/web-2026/
+
 Data: jobs, companies and applications, served locally by json-server.
+
+## Pages
+| Page | File |
+|---|---|
+| Home | `index.html` |
+| Jobs (search, filters, pagination) | `jobs.html` |
+| Job details | `job.html` |
+| Apply | `apply.html` |
+| Application sent | `sent.html` |
 
 ## Stack
 - Vite, with plain ES modules and classes (no UI frameworks, no TypeScript)
+- EJS partials for repeated static blocks, rendered at build time by vite-plugin-ejs
+- schema.org `JobPosting` microdata on job cards and the job details page
+- i18n-ready markup: `data-i18n` keys with a dictionary in `src/i18n/en.json`
 - SCSS with a 7-1 architecture and BEM naming
 - axios and dayjs
 - json-server 0.17 as the mock REST API
@@ -30,7 +43,8 @@ npm run dev:vite
 | `npm run preview:vite` | Lints, then serves the production build |
 | `npm run lint` | Runs ESLint over the project |
 
-Webpack equivalents (`*:webpack`) are kept from the course template.
+## Deployment
+Every push to `main` builds the site and publishes `dist/` to GitHub Pages (`.github/workflows/deploy.yml`).
 
 ## API
 json-server reads `api/db.json`, and `api/routes.json` maps short routes onto its collections. Endpoints for this project:
@@ -47,13 +61,17 @@ Query parameters: `_page`, `_limit`, `_sort`, `_order`, `q`, and field filters s
 ## Structure
 ```
 api/            db.json, routes.json (mock API)
-src/
+src/           Vite root: every src/*.html is a page of the multi-page build
+  *.html        pages: index, jobs, job, apply, sent
+  partials/     EJS partials: head, footer, job-card, company-logo, company-tile
+  data/         sample content for the static pages (used by EJS at build time)
+  i18n/         en.json: UI text dictionary for data-i18n keys
+  assets/img/   images (webp + jpg)
   styles/       SCSS 7-1: abstracts, base, components, layout, pages, themes, vendors, main.scss
   js/
     api/        http client and endpoints
     core/       store and utilities
     main.js     entry point
-index.html
 vite.config.js
 eslint.config.js
 ```
@@ -62,6 +80,6 @@ eslint.config.js
 | Lab | Topic | Status |
 |---|---|---|
 | 1 | Figma design: design system and 4 pages at 390 / 768 / 1280 | done |
-| 2 | Semantic HTML for the 4 pages, navigation, responsive images | planned |
+| 2 | Semantic HTML for the pages, navigation, responsive images, EJS partials, schema.org, i18n keys | done |
 | 3 | SCSS 7-1, responsive layout for 3 breakpoints | planned |
 | 4 | JS with json-server: lists, filters, search, sorting, pagination, forms | planned |

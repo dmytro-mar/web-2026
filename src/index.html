@@ -1,23 +1,110 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Web Labs Starter</title>
+  <%- include('partials/head', {
+    title: 'DevJobs | IT jobs at startups',
+    titleKey: 'home.metaTitle',
+    description: 'Search IT jobs at startups: remote, hybrid and onsite roles for junior, middle and senior developers.'
+  }) %>
 </head>
 <body>
-  <header class="u-header">
-    <nav class="u-nav">
-      <a href="#" class="u-logo">MySite</a>
-      <ul class="u-menu">
-        <li><a href="#/home">Home</a></li>
-        <li><a href="#/list">List</a></li>
-        <li><a href="#/about">About</a></li>
+  <a class="skip-link" href="#main" data-i18n="common.skipLink">Skip to content</a>
+
+  <header class="header">
+    <a class="header__logo" href="index.html">
+      <picture class="header__logo-picture">
+        <source type="image/webp" srcset="assets/img/logo-28.webp 1x, assets/img/logo-56.webp 2x">
+        <img class="header__logo-mark" src="assets/img/logo-28.jpg" srcset="assets/img/logo-28.jpg 1x, assets/img/logo-56.jpg 2x" width="28" height="28" alt="">
+      </picture>
+      <span class="header__logo-text" data-i18n="common.brand">DevJobs</span>
+    </a>
+    <nav class="nav" aria-label="Main" data-i18n-aria-label="nav.label">
+      <ul class="nav__list">
+        <li class="nav__item"><a class="nav__link nav__link--active" href="index.html" aria-current="page" data-i18n="nav.home">Home</a></li>
+        <li class="nav__item"><a class="nav__link" href="jobs.html" data-i18n="nav.jobs">Jobs</a></li>
       </ul>
     </nav>
   </header>
-  <main id="app"></main>
-  <footer class="u-footer">© 2025</footer>
-  <script type="module" src="/src/js/main.js"></script>
+
+  <main class="home" id="main">
+    <section class="intro" aria-labelledby="intro-title">
+      <h1 class="intro__title" id="intro-title" data-i18n="home.title">Search IT jobs at startups</h1>
+
+      <form class="search-bar intro__search" action="jobs.html" method="get" role="search">
+        <label class="hidden" for="intro-search" data-i18n="search.label">Search jobs</label>
+        <input class="search-bar__input" id="intro-search" name="q" type="search" placeholder="Job title or keyword" data-i18n-placeholder="search.placeholder" autocomplete="off">
+        <button class="search-bar__button" type="submit" data-i18n="search.submit">Search</button>
+      </form>
+
+      <nav class="quick-filters intro__filters" aria-label="Popular searches" data-i18n-aria-label="home.popularSearches">
+        <ul class="quick-filters__list">
+          <li class="quick-filters__item"><a class="quick-filters__link" href="jobs.html?work=Remote" data-i18n="home.quick.remote">Remote</a></li>
+          <li class="quick-filters__item"><a class="quick-filters__link" href="jobs.html?level=Junior" data-i18n="home.quick.junior">Junior</a></li>
+          <li class="quick-filters__item"><a class="quick-filters__link" href="jobs.html?q=Frontend" data-i18n="home.quick.frontend">Frontend</a></li>
+          <li class="quick-filters__item"><a class="quick-filters__link" href="jobs.html?q=Backend" data-i18n="home.quick.backend">Backend</a></li>
+          <li class="quick-filters__item"><a class="quick-filters__link" href="jobs.html?q=Design" data-i18n="home.quick.design">Design</a></li>
+        </ul>
+      </nav>
+    </section>
+
+    <section class="stats" aria-labelledby="stats-title">
+      <h2 class="hidden" id="stats-title" data-i18n="home.stats.title">DevJobs in numbers</h2>
+      <ul class="stats__list">
+        <li class="stats__item"><strong class="stats__value">120</strong> <span class="stats__label" data-i18n="home.stats.openJobs">open jobs</span></li>
+        <li class="stats__item"><strong class="stats__value">45</strong> <span class="stats__label" data-i18n="home.stats.startups">startups</span></li>
+        <li class="stats__item"><strong class="stats__value">12</strong> <span class="stats__label" data-i18n="home.stats.newToday">new today</span></li>
+      </ul>
+    </section>
+
+    <section class="latest-jobs" aria-labelledby="latest-jobs-title">
+      <div class="latest-jobs__header">
+        <h2 class="latest-jobs__title" id="latest-jobs-title" data-i18n="home.latest.title">Latest jobs</h2>
+        <a class="latest-jobs__all" href="jobs.html"><span data-i18n="home.latest.viewAll">View all</span><span class="hidden" data-i18n="home.latest.viewAllHidden"> jobs</span></a>
+      </div>
+
+      <ul class="job-list">
+        <% jobs.slice(0, 4).forEach((job) => { %>
+        <li class="job-list__item"><%- include("partials/job-card", { job, company: companyByName[job.company] }) %></li>
+        <% }); %>
+      </ul>
+
+      <a class="button button--outline latest-jobs__more" href="jobs.html" data-i18n="home.latest.showMore">Show more jobs</a>
+    </section>
+
+    <section class="companies" aria-labelledby="companies-title">
+      <h2 class="companies__title" id="companies-title" data-i18n="home.companies.title">Top companies</h2>
+      <ul class="companies__list">
+        <% companies.forEach((company) => { %>
+        <li class="companies__item"><%- include("partials/company-tile", { company }) %></li>
+        <% }); %>
+      </ul>
+    </section>
+
+    <section class="how-it-works" aria-labelledby="how-it-works-title">
+      <h2 class="how-it-works__title" id="how-it-works-title" data-i18n="home.howItWorks.title">How it works</h2>
+      <ol class="how-it-works__steps">
+        <li class="how-it-works__step">
+          <h3 class="how-it-works__step-title" data-i18n="home.howItWorks.searchTitle">Search</h3>
+          <p class="how-it-works__step-text" data-i18n="home.howItWorks.searchText">Filter jobs</p>
+        </li>
+        <li class="how-it-works__step">
+          <h3 class="how-it-works__step-title" data-i18n="home.howItWorks.openTitle">Open</h3>
+          <p class="how-it-works__step-text" data-i18n="home.howItWorks.openText">Read the details</p>
+        </li>
+        <li class="how-it-works__step">
+          <h3 class="how-it-works__step-title" data-i18n="home.howItWorks.applyTitle">Apply</h3>
+          <p class="how-it-works__step-text" data-i18n="home.howItWorks.applyText">Send in minutes</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="cta" aria-labelledby="cta-title">
+      <h2 class="cta__title" id="cta-title" data-i18n="home.cta.title">Ready to join a startup?</h2>
+      <p class="cta__text" data-i18n="home.cta.text">Apply in two minutes.</p>
+      <a class="button button--primary cta__button" href="jobs.html" data-i18n="home.cta.button">Browse all jobs</a>
+    </section>
+  </main>
+
+  <%- include("partials/footer") %>
 </body>
 </html>

@@ -1,0 +1,73 @@
+<%#
+  job: { title, company, hoursMin, hoursMax, workType, countries[], level, stack[], salaryMin, salaryMax, postedAt, posted }
+  company: { name, logo, tone }
+%>
+<%
+  const hours = job.hoursMin === job.hoursMax
+    ? `${job.hoursMin}`
+    : `${job.hoursMin}–${job.hoursMax}`;
+  const salary = `$${job.salaryMin.toLocaleString('en-US')}–${job.salaryMax.toLocaleString('en-US')}`;
+  const employmentType = (job.hoursMin + job.hoursMax) / 2 >= 35 ? 'FULL_TIME' : 'PART_TIME';
+  const isRemote = job.workType === 'Remote';
+%>
+<article class="job-card" itemscope itemtype="https://schema.org/JobPosting">
+  <div class="job-card__logo">
+    <%- include('company-logo', { company }) %>
+  </div>
+
+  <div class="job-card__body">
+    <h3 class="job-card__title">
+      <a class="job-card__link" href="job.html" itemprop="url"><span itemprop="title"><%= job.title %></span></a>
+    </h3>
+
+    <p class="job-card__meta">
+      <span itemprop="hiringOrganization" itemscope itemtype="https://schema.org/Organization">
+        <span itemprop="name"><%= job.company %></span>
+      </span>
+      ·
+      <span itemprop="workHours"><%= hours %> <span data-i18n="common.hoursPerWeek">h/week</span></span>
+    </p>
+
+    <meta itemprop="employmentType" content="<%= employmentType %>">
+    <% if (isRemote) { %>
+    <meta itemprop="jobLocationType" content="TELECOMMUTE">
+    <% job.countries.forEach((country) => { %>
+    <span itemprop="applicantLocationRequirements" itemscope itemtype="https://schema.org/Country">
+      <meta itemprop="name" content="<%= country %>">
+    </span>
+    <% }); %>
+    <% } else { %>
+    <% job.countries.forEach((country) => { %>
+    <span itemprop="jobLocation" itemscope itemtype="https://schema.org/Place">
+      <span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+        <meta itemprop="addressCountry" content="<%= country %>">
+      </span>
+    </span>
+    <% }); %>
+    <% } %>
+
+    <ul class="job-card__tags" aria-label="Tags" data-i18n-aria-label="common.tags">
+      <li class="tag<%= isRemote ? ' tag--remote' : '' %>"><%= job.workType %></li>
+      <li class="tag tag--level" itemprop="experienceRequirements"><%= job.level %></li>
+      <% job.stack.forEach((skill) => { %>
+      <li class="tag" itemprop="skills"><%= skill %></li>
+      <% }); %>
+    </ul>
+  </div>
+
+  <div class="job-card__footer">
+    <p class="job-card__salary" itemprop="baseSalary" itemscope itemtype="https://schema.org/MonetaryAmount">
+      <meta itemprop="currency" content="USD">
+      <span itemprop="value" itemscope itemtype="https://schema.org/QuantitativeValue">
+        <meta itemprop="minValue" content="<%= job.salaryMin %>">
+        <meta itemprop="maxValue" content="<%= job.salaryMax %>">
+        <meta itemprop="unitText" content="MONTH">
+        <%= salary %>
+      </span>
+    </p>
+
+    <p class="job-card__posted">
+      <time itemprop="datePosted" datetime="<%= job.postedAt %>"><%= job.posted %></time>
+    </p>
+  </div>
+</article>

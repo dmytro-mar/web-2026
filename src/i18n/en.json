@@ -1,0 +1,156 @@
+{
+  "common": {
+    "skipLink": "Skip to content",
+    "brand": "DevJobs",
+    "tags": "Tags",
+    "hoursPerWeek": "h/week",
+    "openRoles": "open roles"
+  },
+  "nav": {
+    "label": "Main",
+    "home": "Home",
+    "jobs": "Jobs"
+  },
+  "footer": {
+    "tagline": "Startup Job Board for IT"
+  },
+  "search": {
+    "label": "Search jobs",
+    "placeholder": "Job title or keyword",
+    "submit": "Search"
+  },
+  "home": {
+    "metaTitle": "DevJobs | IT jobs at startups",
+    "title": "Search IT jobs at startups",
+    "popularSearches": "Popular searches",
+    "quick": {
+      "remote": "Remote",
+      "junior": "Junior",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "design": "Design"
+    },
+    "stats": {
+      "title": "DevJobs in numbers",
+      "openJobs": "open jobs",
+      "startups": "startups",
+      "newToday": "new today"
+    },
+    "latest": {
+      "title": "Latest jobs",
+      "viewAll": "View all",
+      "viewAllHidden": " jobs",
+      "showMore": "Show more jobs"
+    },
+    "companies": {
+      "title": "Top companies"
+    },
+    "howItWorks": {
+      "title": "How it works",
+      "searchTitle": "Search",
+      "searchText": "Filter jobs",
+      "openTitle": "Open",
+      "openText": "Read the details",
+      "applyTitle": "Apply",
+      "applyText": "Send in minutes"
+    },
+    "cta": {
+      "title": "Ready to join a startup?",
+      "text": "Apply in two minutes.",
+      "button": "Browse all jobs"
+    }
+  },
+  "jobs": {
+    "metaTitle": "Jobs | DevJobs",
+    "title": "Jobs",
+    "results": "results",
+    "resultsTitle": "Job results",
+    "filters": {
+      "label": "Filters",
+      "workType": "Work type",
+      "remote": "Remote",
+      "hybrid": "Hybrid",
+      "onsite": "Onsite",
+      "level": "Level",
+      "junior": "Junior",
+      "middle": "Middle",
+      "senior": "Senior",
+      "more": "More filters",
+      "stack": "Stack",
+      "salaryFrom": "Salary from, $",
+      "sortBy": "Sort by",
+      "sortNew": "Newest",
+      "sortSalaryDesc": "Salary: high to low",
+      "sortSalaryAsc": "Salary: low to high",
+      "hours": "Hours per week",
+      "hoursFrom": "Hours/week from",
+      "hoursTo": "to",
+      "strict": "Strict match",
+      "strictHint": "Whole job range must fit inside the filter",
+      "show": "Show jobs",
+      "reset": "Reset"
+    },
+    "pagination": {
+      "label": "Pagination",
+      "next": "Next page"
+    }
+  },
+  "details": {
+    "breadcrumb": "Breadcrumb",
+    "posted": "Posted",
+    "onThisPage": "On this page",
+    "overview": "Overview",
+    "requirements": "Requirements",
+    "benefits": "Benefits",
+    "company": "Company",
+    "similar": "Similar jobs",
+    "facts": {
+      "workType": "Work type",
+      "level": "Level",
+      "hours": "Hours",
+      "salary": "Salary",
+      "posted": "Posted"
+    },
+    "perMonth": "per month",
+    "applyNow": "Apply now"
+  },
+  "apply": {
+    "breadcrumb": "Apply",
+    "titlePrefix": "Apply for",
+    "intro": "Takes about 2 minutes.",
+    "summary": "Job summary",
+    "requiredNote": "required",
+    "contactLegend": "Contact details",
+    "applicationLegend": "Application",
+    "name": "Full name",
+    "namePlaceholder": "Your full name",
+    "nameError": "Enter your name",
+    "email": "Email",
+    "emailError": "Enter a valid email, e.g. name@mail.com",
+    "phone": "Phone",
+    "optional": "(optional)",
+    "phoneError": "Enter a phone number, e.g. +380 50 123 45 67",
+    "portfolio": "Portfolio / LinkedIn / GitHub",
+    "urlError": "Enter a link starting with https://",
+    "cv": "CV link",
+    "cvHint": "Google Drive, Dropbox or a PDF link",
+    "cvError": "Add a link to your CV",
+    "coverLetter": "Cover letter",
+    "coverLetterPlaceholder": "Tell us why you are a good fit...",
+    "consent": "I agree to the processing of my personal data",
+    "consentError": "Please confirm to continue",
+    "send": "Send application",
+    "cancel": "Cancel"
+  },
+  "sent": {
+    "metaTitle": "Application sent | DevJobs",
+    "title": "Application sent",
+    "text": "The employer will contact you by email.",
+    "job": "Job",
+    "company": "Company",
+    "name": "Name",
+    "email": "Email",
+    "date": "Date",
+    "backToJobs": "Back to jobs"
+  }
+}

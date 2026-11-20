@@ -1,0 +1,6 @@
+<%# company: { name, logo, tone, openRoles } %>
+<article class="company-tile">
+  <div class="company-tile__logo"><%- include('company-logo', { company }) %></div>
+  <h3 class="company-tile__name"><%= company.name %></h3>
+  <p class="company-tile__roles"><%= company.openRoles %> <span data-i18n="common.openRoles">open roles</span></p>
+</article>
