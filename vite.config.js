@@ -22,6 +22,8 @@ export default defineConfig({
     outDir: resolve(import.meta.dirname, "dist"),
     emptyOutDir: true,
     sourcemap: true,
+    // Keep every image as a separate file; inlining small ones as base64 would defeat srcset.
+    assetsInlineLimit: 0,
     rollupOptions: { input: pages }
   }
 });
