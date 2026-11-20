@@ -47,13 +47,13 @@ Query parameters: `_page`, `_limit`, `_sort`, `_order`, `q`, and field filters s
 ## Structure
 ```
 api/            db.json, routes.json (mock API)
-src/
+src/           Vite root: every src/*.html is a page of the multi-page build
+  index.html
   styles/       SCSS 7-1: abstracts, base, components, layout, pages, themes, vendors, main.scss
   js/
     api/        http client and endpoints
     core/       store and utilities
     main.js     entry point
-index.html
 vite.config.js
 eslint.config.js
 ```
