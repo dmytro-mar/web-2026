@@ -1,14 +1,20 @@
-# Web Labs Starter (Vite + json-server)
+# DevJobs
 
-A forkable starter for a 4-lab web course (HTML, SCSS, JS + API).
-- **No UI frameworks**; SCSS with mixins & functions.
-- **ES Modules**, simple class-based structure.
-- **json-server** bundled for mock API.
-- **ESLint** preconfigured.
+A job board for IT startups.
 
-[API documentation](./api/API_MAP.md)
+Pages: **Home**, **Jobs**, **Job details** and **Apply**.
+Data: jobs, companies and applications, served locally by json-server.
+
+## Stack
+- Vite, with plain ES modules and classes (no UI frameworks, no TypeScript)
+- SCSS with a 7-1 architecture and BEM naming
+- axios and dayjs
+- json-server 0.17 as the mock REST API
+- ESLint (flat config)
 
 ## Quick start
+Requires Node.js 20.19+ or 22.12+.
+
 ```bash
 npm install
 npm run dev:vite
@@ -16,93 +22,46 @@ npm run dev:vite
 - App: http://localhost:5173
 - API: http://localhost:5174
 
-## Scripts Vite
-- `npm run dev:vite` – starts Vite + json-server concurrently
-- `npm run build:vite` – builds for production
-- `npm run preview:vite` – preview build locally
-- `npm run lint` – run ESLint
+## Scripts
+| Script | What it does |
+|---|---|
+| `npm run dev:vite` | Starts Vite and json-server together |
+| `npm run build:vite` | Lints, then builds to `dist/` |
+| `npm run preview:vite` | Lints, then serves the production build |
+| `npm run lint` | Runs ESLint over the project |
 
-## Scripts Webpack
-- `npm run dev:webpack` – starts Webpack + json-server concurrently
-- `npm run build:webpack` – builds for production
-- `npm run preview:webpack` – preview build locally
-- `npm run lint` – run ESLint
+Webpack equivalents (`*:webpack`) are kept from the course template.
 
-## Folder structure
+## API
+json-server reads `api/db.json`, and `api/routes.json` maps short routes onto its collections. Endpoints for this project:
+
+| Endpoint | Collection |
+|---|---|
+| `GET /topic9/jobs`, `GET /topic9/jobs/:id` | `t9_jobs` |
+| `GET /topic9/companies` | `t9_companies` |
+| `GET, POST /topic9/applications` | `t9_applications` |
+| `GET /topic9/jobs/:id/applications` | applications for one job |
+
+Query parameters: `_page`, `_limit`, `_sort`, `_order`, `q`, and field filters such as `?level=Junior`. See [api/API_MAP.md](./api/API_MAP.md) for the full list.
+
+## Structure
 ```
-public/
+api/            db.json, routes.json (mock API)
 src/
-  assets/
-  styles/        # SCSS 7–1 architecture
-    abstracts/   # _variables.scss, _functions.scss, _mixins.scss
-    base/        # _reset.scss, _typography.scss
-    components/  # _button.scss, _card.scss ...
-    layout/      # _grid.scss, _header.scss, _footer.scss
-    pages/       # _home.scss, _list.scss, ...
-    themes/
-    vendors/
-    main.scss
+  styles/       SCSS 7-1: abstracts, base, components, layout, pages, themes, vendors, main.scss
   js/
-    api/
-      http.js        # axios instance
-      endpoints.js   # REST endpoints
-    core/
-      store.js       # minimal state/pubsub
-      utils.js
-    components/
-      # class-based components (ListView, Paginator, etc.)
-    pages/
-      # controllers per route/page
-    main.js
-  index.html
+    api/        http client and endpoints
+    core/       store and utilities
+    main.js     entry point
+index.html
 vite.config.js
-.eslintrc.cjs
-DEVLOG.md
-Prompts.md
+eslint.config.js
 ```
 
----
-
-## LAB 1 – Figma (Web + Mobile), 4 pages (BEGINNER-FRIENDLY)
-**Goal:** build simple desktop & mobile mockups and reusable elements.
-
-### Required (6 pts)
-1) Colors: pick 3–5 main colors (background, text, accent).  
-2) Fonts: define 2 text styles (Headings, Body).  
-3) Components: Button (default + hover), Input (default).  
-4) Grids: 12-col (desktop ≥1280px), 4-col (mobile 360–390px).  
-5) Pages: Design **4 pages** in both desktop & mobile.
-
-### Optional (to 8 pts)
-6) Use Auto layout on sections (cards, lists, forms).  
-7) Create a small library: buttons, inputs, cards.
-
-### Bonus (to 10–12 pts)
-8) Prototype one flow (e.g., Search → Details → Form).  
-9) Basic accessibility: check color contrast, add focus state.
-
-**Submit:** Figma view link + short description of pages and chosen colors/fonts.
-
----
-
-## LAB 2 – HTML & Semantics (skeleton)
-- 4 pages with semantic tags (header/nav/main/section/article/aside/footer).
-- Accessible images (alt), forms with labels.  
-- (+) Extra: server-side templating (EJS/Pug) for repeated parts.
-
-## LAB 3 – SCSS & Responsive
-- SCSS 7–1, BEM.
-- Mixins & functions (grid, container, rem(), color helpers).
-- 3 breakpoints: 360–390 / 768 / ≥1280, responsive images.
-
-## LAB 4 – JS + API (json-server)
-- axios-based API client, list + filters + search + sort.
-- Pagination (buttons or infinite scroll).
-- Form with validation; localStorage cache.
-- (+) Optional: hash-router; debounce search; optimistic UI for likes.
-
----
-
-## Academic honesty / AI usage
-- Keep a weekly **DEVLOG.md** and **Prompts.md** if AI was used.
-- Unique prefixes in class/selectors encouraged to reduce plagiarism.
+## Labs
+| Lab | Topic | Status |
+|---|---|---|
+| 1 | Figma design: design system and 4 pages at 390 / 768 / 1280 | done |
+| 2 | Semantic HTML for the 4 pages, navigation, responsive images | planned |
+| 3 | SCSS 7-1, responsive layout for 3 breakpoints | planned |
+| 4 | JS with json-server: lists, filters, search, sorting, pagination, forms | planned |
